@@ -91,7 +91,7 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
     {
         for (auto i = 1; i < word.size(); i++)
         {
-            if (!(isalpha(word[i]) || word[i] == '_' || numbers.find(word[i] != string::npos)))
+            if (!isalpha(word[i]) && word[i] != '_' && (word[i] < '0' || word[i] > '9'))
             {
                 outputFile << word << errorOutputStr << indexStr << "\n";
                 return true;
