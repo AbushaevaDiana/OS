@@ -1,1 +1,12 @@
-  //hjfgkjhskjfghk
+int main()
+{
+    string name;
+    cin >> name;
+    cout << "Hello, " << name "!";
+    if( name != "Diana")
+    {
+        return 1;
+    }
+    char ch = '3';
+    return 0;  
+}
