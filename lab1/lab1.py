@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 
 def exit_help():
-    print('lab1.py (mealy-to-moore|moore-to-mealy) inputFile outputFile')
+    print(' lab1.py (mealy-to-moore|moore-to-mealy) inputFile outputFile ')
     sys.exit(0)
 
 def MiliToMur():
