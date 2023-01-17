@@ -1,4 +1,8 @@
 ?indetificator
 404error
-_not-good
+_not?good
 'beep'
+.0
+6.
+6..
+4..0

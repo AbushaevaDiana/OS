@@ -23,13 +23,22 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
             return true;
         }
     }
-
     //numbers
     if (numbers.find(word[0]) != string::npos)
     {
+        bool isPoint = false;
+        bool isSecondPoint = false;
         for (auto i = 1; i < word.size(); i++)
         {
-            if ((numbers.find(word[i]) == string::npos) || word[0] == '.')
+            if (isPoint && word[i] == '.')
+            {
+                isSecondPoint = true;
+            }
+            if (word[i] == '.')
+            {
+                isPoint = true;
+            }
+            if ((numbers.find(word[i]) == string::npos) || word[0] == '.' || word[word.size()-1] == '.' || isSecondPoint)
             {
                 outputFile << word << errorOutputStr << indexStr << "\n";
                 return true;
@@ -91,7 +100,7 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
     {
         for (auto i = 1; i < word.size(); i++)
         {
-            if (!(isalpha(word[i]) || word[i] == '_' || numbers.find(word[i] != string::npos)))
+            if (!isalpha(word[i]) && word[i] != '_' && (word[i] < '0' || word[i] > '9'))
             {
                 outputFile << word << errorOutputStr << indexStr << "\n";
                 return true;
