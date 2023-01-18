@@ -42,6 +42,12 @@ def MiliToMur():
 
 def MurToMili():
   ar = array[0]
+  dict = {}
+  index = 0
+  for state in ar:
+    dict[array[1][index]] = state
+    index += 1
+    
   m = len(ar)
   n = len(array)
   resultArray = [[""] * m for i in range(n-1)]
@@ -52,7 +58,7 @@ def MurToMili():
        if(i == 0 or number == 1):
          resultArray[number-1][i] = array[number][i]
        else:
-         resultArray[number-1][i] = array[number][i] + "/" + ar[i]
+         resultArray[number-1][i] = array[number][i] + "/" + dict[array[number][i]]
        i += 1
     number += 1
   return resultArray
