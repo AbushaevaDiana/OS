@@ -2,7 +2,7 @@ int main()
 {
     string name;
     cin >> name;
-    cout << "Hello, " << name "!";
+    cout << "Hello, " << name "!" << endl;
     if( name != "Diana")
     {
         return 1;

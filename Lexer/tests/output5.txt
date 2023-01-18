@@ -1,0 +1,9 @@
+?indetificator --- Error --- 1
+404error --- Error --- line 2
+_not?good --- Error --- 3
+'beep' --- Error --- 4
+.0 --- Error --- line 5
+6. --- Error --- line 6
+6.. --- Error --- line 7
+4..0 --- Error --- line 8
+! --- Error --- 9

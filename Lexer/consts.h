@@ -20,9 +20,7 @@ std::map<std::string, std::string> keywords = {
     std::make_pair("while", "Keyword"),
     std::make_pair("false", "Keyword"),
     std::make_pair("true", "Keyword"),
-    std::make_pair("struct", "Keyword"),
-    std::make_pair("map", "Keyword"),
-    std::make_pair("vector", "Keyword"),
+    std::make_pair("vector", "Type"),
     std::make_pair("continue", "Keyword"),
     std::make_pair("break", "Keyword"),
     std::make_pair("return", "Keyword"),
@@ -33,7 +31,9 @@ std::map<std::string, std::string> keywords = {
     std::make_pair("auto", "Type"),
     std::make_pair("const", "Keyword"),
     std::make_pair("cout", "Keyword"),
-    std::make_pair("cin", "Keyword")
+    std::make_pair("cin", "Keyword"),
+    std::make_pair("struct", "Keyword"),
+    std::make_pair("endl", "Keyword")
 };
 
 std::map<std::string, std::string> separators = {
@@ -49,19 +49,24 @@ std::map<std::string, std::string> separators = {
     std::make_pair("+", "Arithmetic operator"),
     std::make_pair("-", "Arithmetic operator"),
     std::make_pair("=", "Assignment operator"),
-    std::make_pair("==", "Logical operation"),
-    std::make_pair("<=", "Logical operation"),
-    std::make_pair(">=", "Logical operation"),
     std::make_pair("&&", "Logical operation"),
     std::make_pair("||", "Logical operation"),
     std::make_pair(">", "Logical operation"),
     std::make_pair("<", "Logical operation"),
-    std::make_pair("!=", "Logical operation"),
     std::make_pair(":", "Separator"),
-    std::make_pair("<<", "Operator output"),
-    std::make_pair(">>", "Operator input"),
     std::make_pair("{", "Separator"),
     std::make_pair("}", "Separator")
+};
+
+std::map<std::string, std::string> separatorsDouble = {
+    std::make_pair("<<", "Operator output"),
+    std::make_pair(">>", "Operator input"),
+    std::make_pair("==", "Logical operation"),
+    std::make_pair("<=", "Logical operation"),
+    std::make_pair(">=", "Logical operation"),
+    std::make_pair("=<", "Logical operation"),
+    std::make_pair("=>", "Logical operation"),
+    std::make_pair("!=", "Logical operation"),
 };
 
 std::string numbers = "1234567890.";

@@ -9,7 +9,7 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
         return false;
     }
 
-    for (auto& item : separators)
+    for (auto& item : separatorsDouble)
     {
         size_t index = word.find(item.first);
         if (index != string::npos)
@@ -18,7 +18,22 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
             string secondStr = word.substr(index, word.size() - index);
             word = word.substr(0, index);
             MakeToken(word, indexStr, vectorOfStringAndChar, outputFile);
-            outputFile << item.first << " --- " << item.second << " --- " << indexStr << "\n";
+            outputFile << item.first << " --- " << item.second << " --- line " << indexStr << "\n";
+            MakeToken(secondStr, indexStr, vectorOfStringAndChar, outputFile);
+            return true;
+        }
+    }
+
+    for (auto& item: separators)
+    {
+        size_t index = word.find(item.first);
+        if (index != string::npos)
+        {
+            word.erase(index, item.first.size());
+            string secondStr = word.substr(index, word.size() - index);
+            word = word.substr(0, index);
+            MakeToken(word, indexStr, vectorOfStringAndChar, outputFile);
+            outputFile << item.first << " --- " << item.second << " --- line " << indexStr << "\n";
             MakeToken(secondStr, indexStr, vectorOfStringAndChar, outputFile);
             return true;
         }
@@ -38,13 +53,13 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
             {
                 isPoint = true;
             }
-            if ((numbers.find(word[i]) == string::npos) || word[0] == '.' || word[word.size()-1] == '.' || isSecondPoint)
+            if ((numbers.find(word[i]) == string::npos) || word[0] == '.' || word[word.size() - 1] == '.' || isSecondPoint)
             {
-                outputFile << word << errorOutputStr << indexStr << "\n";
+                outputFile << word << errorOutputStr << "line " << indexStr << "\n";
                 return true;
             }
         }
-        outputFile << word << " --- Number  --- " << indexStr << "\n";
+        outputFile << word << " --- Number --- line " << indexStr << "\n";
         return true;
     }
 
@@ -52,15 +67,15 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
     if (keywords.find(word) != keywords.end())
     {
         output = keywords[word];
-        outputFile << word << " --- " << output << " --- " << indexStr << "\n";
+        outputFile << word << " --- " << output << " --- line " << indexStr << "\n";
         return true;
     }
 
-    
+
     if (separators.find(word) != separators.end())
     {
         output = separators[word];
-        outputFile << word << " --- " << output << " --- " << indexStr << "\n"; 
+        outputFile << word << " --- " << output << " --- line " << indexStr << "\n";
         return true;
     }
 
@@ -71,7 +86,7 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
         size_t i = word.find("\"") + 1;
         if (i < word.size() && word.find("\"", i) != string::npos)
         {
-            outputFile << word << " --- String --- " << indexStr << "\n";
+            outputFile << word << " --- String --- line " << indexStr << "\n";
         }
         else
         {
@@ -87,7 +102,7 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
         size_t i = word.find("\'") + 1;
         if (i < word.size() && word.find("\'", i) != string::npos && word.size() == 3)
         {
-            outputFile << word << " --- Char --- " << indexStr << "\n";
+            outputFile << word << " --- Char --- line " << indexStr << "\n";
         }
         else
         {
@@ -106,7 +121,7 @@ bool MakeToken(string& word, int indexStr, deque<string>& vectorOfStringAndChar,
                 return true;
             }
         }
-        outputFile << word << " --- Identifier  --- " << indexStr << "\n";
+        outputFile << word << " --- Identifier --- line " << indexStr << "\n";
         return true;
     }
 
@@ -154,7 +169,7 @@ void ProcessStr(string& inputStr, int indexStr, ofstream& outputFile)
     {
         string comment = inputStr.substr(commentsIndex, inputStr.size() - commentsIndex);
         inputStr = inputStr.substr(0, commentsIndex);
-        outputFile << comment << " --- Comment --- " << indexStr << "\n";
+        outputFile << comment << " --- Comment --- line " << indexStr << "\n";
     }
     deque<string> vectorOfStringAndChar;
     processStringAndChar(vectorOfStringAndChar, inputStr, 0);
